@@ -1,0 +1,12 @@
+# D-I config version 2.0
+# search path for the c32 support libraries (libcom32, libutil etc.)
+path ubuntu-installer/amd64/boot-screens/
+include ubuntu-installer/amd64/boot-screens/menu.cfg
+default ubuntu-installer/amd64/boot-screens/vesamenu.c32
+
+label Ubuntu-18.04
+	menu label ^2 Ubuntu 18.04
+	kernel ubuntu-installer/amd64/linux
+	append auto=true locale=en_US.UTF-8 console-setup/charmap=UTF-8 console-keymaps-at/keymaps=ja106 console-setup/layoutcode=us console-setup/ask_detect=false pkgsel/language-pack-patterns=pkgsel/install-language-support=false interface=eth0 hostname=askar domain=example.com url=tftp://192.168.0.104/boot/preseed.cfg initrd=ubuntu-installer/amd64/initrd.gz --
+prompt 0
+timeout 0
