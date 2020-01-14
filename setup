@@ -1,0 +1,47 @@
+#!/bin/bash
+#mkdir server
+#chmod -R 777 server
+
+#Load official ubuntu images
+#-------------------
+wget http://archive.ubuntu.com/ubuntu/dists/bionic-updates/main/installer-amd64/current/images/netboot/netboot.tar.gz
+
+mkdir netboot_arm
+mkdir netboot_amd
+
+tar -xvzf netboot.tar.gz -C netboot_amd
+
+rm netboot.tar.gz
+
+wget http://ports.ubuntu.com/ubuntu-ports/dists/bionic-updates/main/installer-arm64/current/images/netboot/netboot.tar.gz
+
+tar -xvzf netboot.tar.gz -C netboot_arm
+
+rm netboot.tar.gz
+
+chmod 777 netboot_arm
+
+chmod 777 netboot_amd
+
+chmod  -R 777 ../docker-images
+#-------------------
+
+mkdir ./apache/server
+mkdir ./apache/server_arm
+
+mkdir ./pxe-master/server
+mkdir ./pxe-master/server_arm
+
+cp -r netboot_amd/* ./apache/server
+
+cp -r netboot_amd/* ./pxe-master/server
+
+docker stop $(docker ps -a -q)
+
+cd apache
+
+docker build --no-cache=true -t my-apache2 .
+
+cd ../pxe-master
+
+docker build --no-cache=true -t test_img .
