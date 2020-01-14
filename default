@@ -7,6 +7,6 @@ default ubuntu-installer/amd64/boot-screens/vesamenu.c32
 label Ubuntu-18.04
 	menu label Ubuntu 18.04 amd64
 	kernel ubuntu-installer/amd64/linux
-	append auto=true locale=en_US.UTF-8 console-setup/charmap=UTF-8 console-setup/layoutcode=us console-setup/ask_detect=false pkgsel/language-pack-patterns=pkgsel/install-language-support=false interface=eth0 hostname=askar's system domain=example.com url=tftp://192.168.0.108/boot/boot_amd/preseed.cfg initrd=ubuntu-installer/amd64/initrd.gz --
+	append auto=true locale=en_US.UTF-8 console-setup/charmap=UTF-8 console-setup/layoutcode=us console-setup/ask_detect=false pkgsel/language-pack-patterns=pkgsel/install-language-support=false interface=eth0 hostname=PXEINSTALL domain=example.com url=tftp://192.168.0.108/boot/boot_amd/preseed.cfg initrd=ubuntu-installer/amd64/initrd.gz --
 prompt 0
 timeout 0
