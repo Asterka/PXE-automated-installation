@@ -30,7 +30,7 @@ RUN cp preseed.cfg /tftp/boot/boot_amd
 
 RUN rm /etc/dnsmasq.conf
 
-RUN cp ./dnsmasq2.conf /etc/dnsmasq.conf
+COPY ./dnsmasq2.conf /etc/dnsmasq.conf
 
 RUN cat /tftp/boot/boot_amd/pxelinux.cfg/default
 
