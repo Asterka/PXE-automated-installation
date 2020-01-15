@@ -58,8 +58,6 @@ cp default ./pxe-master
 
 cp dnsmasq2.conf ./pxe-master
 
-cp -r netboot_amd/* ./apache/server
-
 cp -r netboot_amd/* ./pxe-master/server
 
 #Stop all the running containers, as they might occupy the necessary ports
@@ -73,9 +71,10 @@ docker stop $(docker ps -a -q)
 
 #docker build --no-cache=true -t my-apache2 .
 
+chmod -R 777 .
+
 cd pxe-master
 
 docker build --no-cache=true -t pxe_image .
 
-docker run --net host --cap-add NET_ADMIN pxe_image
-
+docker run --net host --cap-add NET_ADMIN test_img
