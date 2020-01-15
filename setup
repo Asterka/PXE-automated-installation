@@ -27,8 +27,8 @@ chmod 777 netboot_amd
 chmod  -R 777 ../docker-images
 #-------------------
 
-mkdir ./apache/server
-mkdir ./apache/server_arm
+#mkdir ./apache/server
+#mkdir ./apache/server_arm
 
 mkdir ./pxe-master
 mkdir ./pxe-master/server
