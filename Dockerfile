@@ -20,9 +20,11 @@ RUN rm tftp/boot/boot_amd/pxelinux.cfg/default
 
 RUN mkdir tftp/boot/pxelinux.cfg
 
-RUN cp default tftp/boot/pxelinux.cfg/
+COPY ./default tftp/boot/pxelinux.cfg/
 
-RUN cp default tftp/boot/boot_amd/pxelinux.cfg/
+COPY ./default tftp/boot/boot_amd/pxelinux.cfg/
+
+RUN wget https://raw.githubusercontent.com/Asterka/PXE-automated-installation/master/preseed.cfg
 
 RUN cp preseed.cfg /tftp/boot/boot_amd
 
