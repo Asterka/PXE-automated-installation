@@ -4,6 +4,7 @@
 
 #Load official ubuntu images
 #-------------------
+
 wget http://archive.ubuntu.com/ubuntu/dists/bionic-updates/main/installer-amd64/current/images/netboot/netboot.tar.gz
 
 mkdir netboot_arm
@@ -29,19 +30,52 @@ chmod  -R 777 ../docker-images
 mkdir ./apache/server
 mkdir ./apache/server_arm
 
+mkdir ./pxe-master
 mkdir ./pxe-master/server
 mkdir ./pxe-master/server_arm
+
+wget https://raw.githubusercontent.com/Asterka/PXE-automated-installation/master/default
+
+wget https://raw.githubusercontent.com/Asterka/PXE-automated-installation/master/Dockerfile
+
+chmod 777 Dockerfile
+
+cp Dockerfile ./pxe-master
+
+wget https://raw.githubusercontent.com/Asterka/PXE-automated-installation/master/dnsmasq2.conf
+
+chmod 777 default
+
+sed -i "s/kek/$(ip -f inet addr show $1 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p')/g" default
+
+chmod 777 dnsmasq2.conf
+
+sed -i "s/interface_name/$1/g" dnsmasq2.conf
+
+sed -i "s/kek/$(ip -f inet addr show $1 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p')/g" dnsmasq2.conf
+
+cp default ./pxe-master
+
+cp dnsmasq2.conf ./pxe-master
 
 cp -r netboot_amd/* ./apache/server
 
 cp -r netboot_amd/* ./pxe-master/server
 
+#Stop all the running containers, as they might occupy the necessary ports
+#This might not be an excellent idea, but I haven't really thought of any other approaches
+
 docker stop $(docker ps -a -q)
 
-cd apache
+#In case you want to include some extra files you might want to use this apache server
 
-docker build --no-cache=true -t my-apache2 .
+#cd apache
 
-cd ../pxe-master
+#docker build --no-cache=true -t my-apache2 .
 
-docker build --no-cache=true -t test_img .
+cd pxe-master
+
+docker build --no-cache=true -t pxe_image .
+
+docker run --net host --cap-add NET_ADMIN pxe_image
+
