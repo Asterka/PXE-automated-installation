@@ -2,8 +2,7 @@ How should I run the system?
 
 1) User should download one and the only file script.sh fileand allow its execution via
 
-    wget https://raw.githubusercontent.com/Asterka/PXE-automated
-    -installation/master/setup
+    wget https://raw.githubusercontent.com/Asterka/PXE-automated-installation/master/setup
 
     chmod a+wxr setup
 
