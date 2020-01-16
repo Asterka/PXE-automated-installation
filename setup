@@ -63,13 +63,13 @@ echo "network:
 
 netplan apply
 
-sed -i "s/kek/$(ip -f inet addr show $1 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p')/g" default
+#sed -i "s/kek/$(ip -f inet addr show $1 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p')/g" default
 
 chmod 777 dnsmasq2.conf
 
 sed -i "s/interface_name/$1/g" dnsmasq2.conf
 
-sed -i "s/kek/$(ip -f inet addr show $1 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p')/g" dnsmasq2.conf
+#sed -i "s/kek/$(ip -f inet addr show $1 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p')/g" dnsmasq2.conf
 
 echo dnsmasq2.conf
 
