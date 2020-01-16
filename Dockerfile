@@ -14,11 +14,11 @@ RUN mkdir /tftp/boot/boot_amd
 
 COPY ./server/ /tftp/boot/boot_amd/
 COPY ./server/ /tftp/
-COPY ./grubnetx64.efi.signed /tftp/
-
+COPY ./grubx64.efi /tftp/
 
 RUN mkdir /tftp/grub
 COPY ./grub.cfg /tftp/grub/
+COPY ./bootx64.efi /tftp/grub
 
 #COPY ./server/install/netboot_amd/ /tftp/boot/boot_amd/
 
