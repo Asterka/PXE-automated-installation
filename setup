@@ -77,4 +77,4 @@ cd pxe-master
 
 docker build --no-cache=true -t pxe_image .
 
-docker run --net host --cap-add NET_ADMIN test_img
+docker run --net host --cap-add NET_ADMIN pxe_image
