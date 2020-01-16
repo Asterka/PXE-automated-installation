@@ -27,8 +27,8 @@ chmod 777 netboot_amd
 chmod  -R 777 ../docker-images
 #-------------------
 
-#mkdir ./apache/server
-#mkdir ./apache/server_arm
+mkdir ./apache/server
+mkdir ./apache/server_arm
 
 mkdir ./pxe-master
 mkdir ./pxe-master/server
@@ -45,6 +45,23 @@ cp Dockerfile ./pxe-master
 wget https://raw.githubusercontent.com/Asterka/PXE-automated-installation/master/dnsmasq2.conf
 
 chmod 777 default
+
+netplan generate 
+
+echo "network:
+  version: 2
+  renderer: NetworkManager
+  ethernets:
+      $1:
+        dhcp4: no
+        dhcp6: no
+        addresses: [192.168.0.155/24, ]
+        gateway4:  192.168.0.1
+        nameservers:
+          addresses: [8.8.8.8, 8.8.4.4]
+" >> /etc/netplan/01-network-manager-all.yaml 
+
+netplan apply
 
 sed -i "s/kek/$(ip -f inet addr show $1 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p')/g" default
 
@@ -77,4 +94,4 @@ cd pxe-master
 
 docker build --no-cache=true -t pxe_image .
 
-docker run --net host --cap-add NET_ADMIN pxe_image
+docker run --net host --cap-add NET_ADMIN pxe_img
