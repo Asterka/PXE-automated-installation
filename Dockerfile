@@ -16,7 +16,7 @@ COPY ./server/ /tftp/boot/boot_amd/
 COPY ./server/ /tftp/
 COPY ./grubnetx64.efi.signed /tftp/
 
-RUN wget https://raw.githubusercontent.com/Asterka/PXE-automated-installation/master/grub.cfg
+
 RUN mkdir /tftp/grub
 COPY ./grub.cfg /tftp/grub/
 
