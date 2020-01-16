@@ -73,7 +73,9 @@ sed -i "s/interface_name/$1/g" dnsmasq2.conf
 
 #sed -i "s/kek/$(ip -f inet addr show $1 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p')/g" dnsmasq2.conf
 
-cp grubnetx64.efi.signed ./pxe-master
+cp grubnetx64.efi.signed ./pxe-master/
+
+ls ./pxe-master/
 
 cp default ./pxe-master
 
