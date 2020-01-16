@@ -46,7 +46,7 @@ dpkg -x  grub-efi-amd64-signed_1.115.1+2.02+dfsg1-12ubuntu2.1_amd64.deb grub
 dpkg -x shim-signed_1.39+15+1533136590.3beb971-0ubuntu1_amd64.deb shim
 
 cp ./shim/usr/lib/shim/shimx64.efi.signed ./pxe-master/bootx64.efi
-cp ./grub/usr/lib/shim/grubnetx64.efi.signed ./pxe-master/grubx64.efi
+cp ./grub/usr/lib/grub/x86_64-efi-signed/grubnetx64.efi.signed ./pxe-master/grubx64.efi
 
 #-------------------
 
