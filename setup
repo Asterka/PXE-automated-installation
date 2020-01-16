@@ -5,6 +5,8 @@
 #Load official ubuntu images
 #-------------------
 
+wget http://archive.ubuntu.com/ubuntu/dists/trusty/main/uefi/grub2-amd64/current/grubnetx64.efi.signed
+
 wget http://archive.ubuntu.com/ubuntu/dists/bionic-updates/main/installer-amd64/current/images/netboot/netboot.tar.gz
 
 mkdir netboot_arm
@@ -71,7 +73,7 @@ sed -i "s/interface_name/$1/g" dnsmasq2.conf
 
 #sed -i "s/kek/$(ip -f inet addr show $1 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p')/g" dnsmasq2.conf
 
-echo dnsmasq2.conf
+cp grubnetx64.efi.signed ./pxe-master
 
 cp default ./pxe-master
 
