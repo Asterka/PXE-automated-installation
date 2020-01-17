@@ -47,7 +47,7 @@ wget http://archive.ubuntu.com/ubuntu/dists/bionic/main/uefi/grub2-amd64/current
 #dpkg -x shim-*.deb shim
 
 #cp ./shim/usr/lib/shim/shimx64.efi.signed ./pxe-master/bootx64.efi
-cp grubnetx64.efi ./pxe-master/grubx64.efi
+cp grubnetx64.efi.signed ./pxe-master/grubx64.efi
 
 #-------------------
 
