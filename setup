@@ -40,13 +40,14 @@ chmod 777 grub
 chmod 777 shim
 
 apt-get download shim.signed
-wget http://archive.ubuntu.com/ubuntu/dists/bionic/main/uefi/grub-efi-amd64-amd64/current/grubx64.efi
+
+wget http://archive.ubuntu.com/ubuntu/dists/bionic/main/uefi/grub2-amd64/current/grubnetx64.efi
 
 #dpkg -x  grub-*.deb grub
-dpkg -x shim-*.deb shim
+#dpkg -x shim-*.deb shim
 
-cp ./shim/usr/lib/shim/shimx64.efi.signed ./pxe-master/bootx64.efi
-cp grubx64.efi ./pxe-master/grubx64.efi
+#cp ./shim/usr/lib/shim/shimx64.efi.signed ./pxe-master/bootx64.efi
+cp grubnetx64.efi ./pxe-master/grubx64.efi
 
 #-------------------
 
