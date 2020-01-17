@@ -1,6 +1,8 @@
 How should I run the system?
 
-1) User should download one and the only file script.sh fileand allow its execution via
+0) Connect to existing LAN network. Connect the client machine to install Ubuntu on to the same LAN.
+
+1) Server part of installation is: download one and the only file script.sh fileand allow its execution via
 
     wget https://raw.githubusercontent.com/Asterka/PXE-automated-installation/master/setup
 
@@ -9,7 +11,14 @@ How should I run the system?
 2) Execute the file with a working network interface as a parameter. The network interface should be attached to the computer that is going to work as a server. The network should also have another computer, which we will install our system, to be a part of it. The example for enp0s25 is:
 
     ./setup enp0s25
+    
+3) On the client machine, enable loading via network adapter (PXE v IPv4).
 
+4) On user bootscreen choose the last option(Install Ubuntu 18.04)
+
+5) After the installation switch back to boot from disk option in BIOS.
+
+One can then connect to the client machine with the installed system using "ssh root@192.168.0.161", as the address assigned by the DHCP is in this range.
 
 The setup file does the following:
 1) Downloads the kernel files from the vendor. Unzips the files into a
